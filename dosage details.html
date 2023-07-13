@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID Vaccination Dosage Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .dosage-details {
+            margin-bottom: 20px;
+        }
+        
+        .dosage-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .dosage-table th,
+        .dosage-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        
+        .dosage-table th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COVID Vaccination Dosage Details</h1>
+        
+        <div class="dosage-details">
+            <h2>Dosage Details by Centers</h2>
+            <table class="dosage-table">
+                <thead>
+                    <tr>
+                        <th>Center</th>
+                        <th>Total Dosages</th>
+                    </tr>
+                </thead>
+                <tbody id="dosageTableBody">
+                    <!-- Dosage details will be dynamically added here -->
+                    <button type="Submit">  <a href="remove centre.html">Next </a></button>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    
+    <script>
+        // Example dosage details grouped by centers
+        var dosageDetails = [
+            { center: "Center A", dosage: 50 },
+            { center: "Center B", dosage: 40 },
+            { center: "Center C", dosage: 60 },
+            { center: "Center D", dosage: 35 },
+            { center: "Center E", dosage: 55 }
+        ];
+       
+        
+        // Function to display dosage details by centers
+        function displayDosageDetails() {
+            var dosageTableBody = document.getElementById('dosageTableBody');
+            
+            // Clear existing dosage details
+            dosageTableBody.innerHTML = '';
+            
+            // Display dosage details for each center
+            for (var i = 0; i < dosageDetails.length; i++) {
+                var row = document.createElement('tr');
+                var centerCell = document.createElement('td');
+                var dosageCell = document.createElement('td');
+                
+                centerCell.textContent = dosageDetails[i].center;
+                dosageCell.textContent = dosageDetails[i].dosage;
+                
+                row.appendChild(centerCell);
+                row.appendChild(dosageCell);
+                
+                dosageTableBody.appendChild(row);
+            }
+        }
+        
+        // Call the function to display dosage details on page load
+        displayDosageDetails();
+        
+    </script>
+</body>
+</html>
