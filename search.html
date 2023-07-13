@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID Vaccination Center Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .search-form {
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .center {
+            width: 48%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .center-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .working-hours {
+            margin-bottom: 10px;
+        }
+        
+        .select-center {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 480px) {
+            .center {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COVID Vaccination Center Search</h1>
+        
+        <form class="search-form" onsubmit="searchCenters(event)">
+            <select class="select-center" id="selectCenter">
+                <option value="" disabled selected>Select Center</option>
+                <option value="Center A">Center A</option>
+                <option value="Center B">Center B</option>
+                <option value="Center C">Center C</option>
+                <option value="Center D">Center D</option>
+                <option value="Center E">Center E</option>
+                <option value="Center F">Center F</option>
+            </select>
+            <input class="search-input" type="text" id="searchInput" placeholder="Enter your location">
+            <button type="submit">  <a href="slot booking.html">SEARCH </a></button> 
+        </form>
+        
+        <div class="results" id="searchResults"></div>
+    </div>
+    
+    <script>
+        function searchCenters(event) {
+            event.preventDefault();
+            
+            // Get the selected center and search input value
+            var selectCenter = document.getElementById('selectCenter');
+            var selectedCenter = selectCenter.options[selectCenter.selectedIndex].value;
+            var searchInput = document.getElementById('searchInput').value;
+            
+            // Perform search query or API request
+            // Replace this code with your actual search implementation
+            
+            // Example data for demonstration purposes
+            var centers = [
+                { name: "Center A", hours: "9:00 AM - 5:00 PM" },
+                { name: "Center B", hours: "8:00 AM - 4:00 PM" },
+                { name: "Center C", hours: "10:00 AM - 6:00 PM" },
+                { name: "Center D", hours: "9:30 AM - 5:30 PM" },
+                { name: "Center E", hours: "8:30 AM - 4:30 PM" },
+                { name: "Center F", hours: "10:30 AM - 6:30 PM" }
+            ];
+            
+            // Filter centers based on selected center and search input
+            
+            var filteredCenters = centers.filter(function(center) {
+                if (selectedCenter !== "" && center.name !== selectedCenter) {
+                    return false;
+                }
+                
+                if (searchInput !== "" && !center.name.toLowerCase().includes(searchInput.toLowerCase())) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            displayResults(filteredCenters);
+        }
+        
+        function displayResults(centers) {
+            var resultsContainer = document.getElementById('searchResults');
+            
+            if (centers.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+            } else {
+                var html = '';
+                
+                for (var i = 0; i < centers.length; i++) {
+                    html += '<div class="center">';
+                    html += '<p class="center-name">' + centers[i].name + '</p>';
+                    html += '<p class="working-hours">' + centers[i].hours + '</p>';
+                    html += '</div>';
+                }
+                
+                resultsContainer.innerHTML = html;
+            }
+        }
+    </script>
+</body>
+</html>
