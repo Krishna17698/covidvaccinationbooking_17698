@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID Vaccination Center Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .add-center-form {
+            margin-bottom: 20px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .center-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .center {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        
+        .center-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .center-address {
+            margin-bottom: 5px;
+        }
+        
+        .center-contact {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COVID Vaccination Center Management</h1>
+        
+        <form class="add-center-form" onsubmit="addCenter(event)">
+            <input class="form-input" type="text" id="nameInput" placeholder="Enter center name" required>
+            <input class="form-input" type="text" id="addressInput" placeholder="Enter center address" required>
+            <input class="form-input" type="tel" id="contactInput" placeholder="Enter center contact number" required>
+            <button type="submit">  <a href="dosage details.html">Add Centers </a></button>
+        </form>
+        
+    </div>
+    
+    <script>
+        var centers = []; // Array to store registered centers
+        
+        function addCenter(event) {
+            event.preventDefault();
+            
+            // Get form input values
+            var nameInput = document.getElementById('nameInput').value;
+            var addressInput = document.getElementById('addressInput').value;
+            var contactInput = document.getElementById('contactInput').value;
+            
+            // Create a new center object
+            var newCenter = {
+                name: nameInput,
+                address: addressInput,
+                contact: contactInput
+            };
+            
+            // Add the new center to the centers array
+            centers.push(newCenter);
+            
+            // Clear form input fields
+            document.getElementById('nameInput').value = '';
+            document.getElementById('addressInput').value = '';
+            document.getElementById('contactInput').value = '';
+            
+            // Display the registered centers
+            displayCenters();
+        }
+        
+        function displayCenters() {
+            var centerList = document.getElementById('centerList');
+            
+            // Clear the existing center list
+            centerList.innerHTML = '';
+            
+            // Display each registered center
+            for (var i = 0; i < centers.length; i++) {
+                var centerItem = document.createElement('li');
+                centerItem.classList.add('center');
+                
+                var centerName = document.createElement('p');
+                centerName.classList.add('center-name');
+                centerName.textContent = centers[i].name;
+                
+                var centerAddress = document.createElement('p');
+                centerAddress.classList.add('center-address');
+                centerAddress.textContent = centers[i].address;
+                
+                var centerContact = document.createElement('p');
+                centerContact.classList.add('center-contact');
+                centerContact.textContent = 'Contact: ' + centers[i].contact;
+                
+                centerItem.appendChild(centerName);
+                centerItem.appendChild(centerAddress);
+                centerItem.appendChild(centerContact);
+                
+                centerList.appendChild(centerItem);
+            }
+        }
+    </script>
+</body>
+</html>
