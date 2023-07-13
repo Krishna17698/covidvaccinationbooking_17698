@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID Vaccination Center Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .center-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .center {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        
+        .center-name {
+            font-weight: bold;
+        }
+        
+        .center-address {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+        
+        .remove-button {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COVID Vaccination Center Management</h1>
+        
+        <h2>Registered Centers</h2>
+        <ul class="center-list" id="centerList">
+            <!-- Registered centers will be dynamically added here -->
+        </ul>
+    </div>
+    
+    <script>
+        // Example registered centers
+        var centers = [
+            { name: "Center A", address: "123 Main St" },
+            { name: "Center B", address: "456 Elm St" },
+            { name: "Center C", address: "789 Oak St" }
+        ];
+        
+        // Function to display registered centers
+        function displayCenters() {
+            var centerList = document.getElementById('centerList');
+            
+            // Clear the existing center list
+            centerList.innerHTML = '';
+            
+            // Display each registered center
+            for (var i = 0; i < centers.length; i++) {
+                var centerItem = document.createElement('li');
+                centerItem.classList.add('center');
+                
+                var centerName = document.createElement('span');
+                centerName.classList.add('center-name');
+                centerName.textContent = centers[i].name;
+                
+                var centerAddress = document.createElement('span');
+                centerAddress.classList.add('center-address');
+                centerAddress.textContent = centers[i].address;
+                
+                var removeButton = document.createElement('button');
+                removeButton.classList.add('remove-button');
+                removeButton.textContent = 'Remove';
+                removeButton.setAttribute('data-index', i);
+                removeButton.addEventListener('click', removeCenter);
+                
+                centerItem.appendChild(centerName);
+                centerItem.appendChild(centerAddress);
+                centerItem.appendChild(removeButton);
+                
+                centerList.appendChild(centerItem);
+            }
+        }
+        
+        // Function to remove a center
+        function removeCenter() {
+            var index = parseInt(this.getAttribute('data-index'));
+            
+            // Remove the center from the centers array
+            centers.splice(index, 1);
+            
+            // Display the updated centers list
+            displayCenters();
+        }
+        
+        // Call the function to display registered centers on page load
+        displayCenters();
+    </script>
+    <button type="submit">  <a href="login.html">Back to home page </a></button> 
+</body>
+</html>
