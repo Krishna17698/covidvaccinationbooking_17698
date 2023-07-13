@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID Vaccination Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .booking-form {
+            margin-bottom: 20px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COVID Vaccination Booking</h1>
+        
+        <form class="booking-form" onsubmit="submitForm(event)">
+            <input class="form-input" type="text" id="nameInput" placeholder="Enter your name" required>
+            <input class="form-input" type="email" id="emailInput" placeholder="Enter your email" required>
+            <input class="form-input" type="tel" id="phoneInput" placeholder="Enter your phone number" required>
+            <input class="form-input" type="text" id="center" placeholder="Enter your center" required>
+            <button type="submit"><a href="login.html">Book Slot </a>
+            <p class="error-message" id="errorMessage"></p>
+        </form>
+    </div>
+    
+    <script>
+        var candidatesPerDay = 10; // Maximum number of candidates per day
+        var bookedCandidates = 0; // Counter for booked candidates
+        
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Get form input values
+            var nameInput = document.getElementById('nameInput').value;
+            var emailInput = document.getElementById('emailInput').value;
+            var phoneInput = document.getElementById('phoneInput').value;
+            var center = document.getElementById('center').value;
+            
+            // Check if there are available slots
+            if (bookedCandidates < candidatesPerDay) {
+                // Perform booking logic here
+                // Replace this code with your actual booking implementation
+                
+                // Example booking logic
+                // Display success message
+                alert('Booking successful! You are booked for a vaccination slot.');
+                
+                // Increment booked candidates counter
+                bookedCandidates++;
+                
+                // Reset the form
+                document.getElementById('nameInput').value = '';
+                document.getElementById('emailInput').value = '';
+                document.getElementById('phoneInput').value = '';
+                
+                // Clear error message if displayed
+                document.getElementById('errorMessage').textContent = '';
+            } else {
+                // Display error message if no available slots
+                document.getElementById('errorMessage').textContent = 'All slots for today are booked. Please try again tomorrow.';
+            }
+        }
+    </script>
+</body>
+</html>
